@@ -1,0 +1,19 @@
+@startuml
+actor USER
+USER -> AlquilerCanchas: calcularPrecioReserva(int idReserva): double
+
+activate AlquilerCanchas
+AlquilerCanchas -> AlquilerCanchas: buscarReserva(int idReserva): Reservas
+AlquilerCanchas -> Reservas: calcularPrecioReserva(): double
+activate Reservas
+Reservas -> Canchas: calcularPrecio(): double
+activate Canchas
+Canchas --> Reservas: return precio: double
+deactivate Canchas
+Reservas --> AlquilerCanchas: return precio: double
+deactivate Reservas
+AlquilerCanchas --> USER: return precio: double 
+deactivate AlquilerCanchas
+
+
+@enduml

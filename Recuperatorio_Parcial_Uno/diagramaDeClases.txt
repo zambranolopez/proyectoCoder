@@ -1,0 +1,137 @@
+@startuml
+class AlquilerCanchas {
+-{static} instacia: AlquilerCanchas
+-listaUsuarios: List<Usuarios>
+-listaCanchas: List<Canchas>
+-listaClubes: List<Club>
+-listaReservasRegistradas: List<Reservas>
+-getInstancia(): AlquilerCanchas
+
++registrarUsuario(String dni, String nombre, int edad): Usuario
++reservarCancha(idClub int, int numeroCancha, int idUsuario, Date Fecha, int hora): Reserva
++calcularPrecioReserva(int idReserva): double
++crearNuevaCancha(int idClub, TipoCancha tipoCancha, int cantMaxJugadores): Canchas
+
+-agregarUsuario(Usuarios usuario): void
+-agregarCancha(Canchas cancha): void
+-agregarReserva(Reservas reserva): void
+
+-buscarUsuario(int idUsuario): Usuarios
+-buscarReserva(int idReserva): Reservas
+-buscarCancha(int numeroCancha): Canchas
+
+}
+
+class Reservas {
+-{static} contadorId: int
+-idReserva: int
+-usuario: Usuario
+-club: Club
+-cancha: Canchas
+-fechaReserva: Date
+-hora: int
+
++crearReserva(idClub int, int numeroCancha, int idUsuario, Date Fecha, int hora): Reserva
++calcularPrecioReserva(): double
+-existeReserva(int numeroCancha, Date fecha, int hora): boolean
+}
+
+class Usuarios {
+-{static} contadorId: int
+-idUsuario: int
+-dni: String
+-nombre: String
+-edad: int
+-club: Club
+-reservas: List<Reservas>
+
++registrarse(String dni, String nombre, int edad): Usuario
++generarReserva(idClub int, int numeroCancha, int idUsuario, Date Fecha, int hora): Reserva
+-masDeDosReservasActivas(List<Reservas> listadoReservas): boolean
+
+}
+
+class Club{
+-idClub: int
+-listaCanchas: List<Canchas>
+-ListaReservas: List<Reservas>
+-ListaUsuarios: List<Usuarios>
+
++añadirUsuario(int idClub, Usuario usuario): void
++añadirReservas(int idClub, Reservas reserva): void
++añadirCanchas(int idClub, Canchas cancha): void
+
+-buscarUsuario(int idUsuario): Usuarios
+-buscarReserva(int idReserva): Reservas
+-buscarCancha(int numeroCancha): Canchas
+
+}
+
+abstract Canchas{
+-{stactic} contadorId: int
+#numeroCancha: int
+#club: Club
+#precioBase: double
+#cantMaxJugadores: int
+
++crearNuevaCancha(int idClub, TipoCancha tipoCancha, int cantMaxJugadores): Canchas
++getNumeroCancha(): int
++{abstract} calcularPrecio(): double
+
+}
+
+class CanchaFutbol{
+-TipoCancha: TipoCanchaFutbol
+-cantMaxJugadores: int
++calcularPrecio(): double
+}
+
+class CanchaPadel{
+-TipoCancha: TipoCanchaPadel
+-precioPaleta: double
+-precioPelotas: double
++calcularPrecio(): double
+}
+
+class CanchaTenis{
+-TipoCancha: TipoCanchaTenis
+-precioRaqueta: double
++calcularPrecio(): double
+}
+
+enum TipoCanchaFutbol{
+SINTETICO
+CAUCHO
+}
+enum TipoCanchaPadel{
+CUBIERTA
+DESCUBIERTA
+}
+enum TipoCanchaTenis{
+ARCILLA
+CEMENTO
+}
+
+AlquilerCanchas "1" *-- "*" Usuarios
+AlquilerCanchas "1" *-- "*" Canchas
+AlquilerCanchas "1" *-- "*" Club
+AlquilerCanchas "1" *-- "*" Reservas
+
+CanchaFutbol <-- TipoCanchaFutbol
+CanchaPadel <-- TipoCanchaPadel
+CanchaTenis <-- TipoCanchaTenis
+
+Canchas <|-- CanchaFutbol
+Canchas <|-- CanchaPadel
+Canchas <|-- CanchaTenis
+
+Club "1" *--- "*" Usuarios
+Club "1" *--- "*" Canchas
+Club "1" *--- "*" Reservas
+Reservas "1" o-- "1" Usuarios
+Reservas "1" o-- "1" Canchas
+
+
+
+
+@enduml
