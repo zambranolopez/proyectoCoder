@@ -1,0 +1,39 @@
+@startuml
+actor USER
+
+USER -> AlquilerCanchas: reservarCancha(idClub int, int numeroCancha, int idUsuario, Date Fecha, int hora): Reserva
+activate AlquilerCanchas
+
+AlquilerCanchas -> AlquilerCanchas: buscarUsuario(int idUsuario): Usuarios
+  alt "no existe usuario"
+   AlquilerCanchas --> USER: return void
+  else "existe usuario"
+   AlquilerCanchas -> Usuarios: generarReserva(idClub int, int numeroCancha, int idUsuario, Date Fecha, int hora): Reservas
+   activate Usuarios
+   Usuarios -> Usuarios: masDeDosReservasActivas(List<Reservas> listadoReservas): boolean
+     alt "tengo 2 reservas"
+      Usuarios --> AlquilerCanchas: return boolean
+      AlquilerCanchas --> USER: return void
+     else "no tengo reservas"
+      Usuarios -> Reservas: crearReserva(idClub int, int numeroCancha, int idUsuario, Date Fecha, int hora): Reservas
+      activate Reservas
+      Reservas -> Reservas: existeReserva(int numeroCancha, Date fecha, int hora): boolean
+        alt "existe reserva en ese dia y hora para esa cancha"
+         Reservas --> Usuarios: return boolean
+         Usuarios --> AlquilerCanchas: return boolean
+         AlquilerCanchas --> USER: return void
+        else "no hay reserva para ese dia u horario para esa cancha"
+         Reservas --> Usuarios: return Reservas
+         deactivate Reservas
+         Usuarios --> AlquilerCanchas: return Reservas
+         deactivate Usuarios
+         AlquilerCanchas --> AlquilerCanchas: agregarReserva(Reservas reserva): void
+         AlquilerCanchas --> USER: return Reservas
+         deactivate AlquilerCanchas
+        end
+     end
+
+
+
+  end
+@enduml
