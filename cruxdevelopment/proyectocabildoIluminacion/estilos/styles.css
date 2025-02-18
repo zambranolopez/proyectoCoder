@@ -1,0 +1,109 @@
+body {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*Encabezado*/
+header {
+    background-color: #624E88;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    height: 65px;
+}
+
+nav {
+    display: flex;
+    margin: 5px;
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo #logo {
+    display: flex;
+    justify-content: start;
+    height: 55px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    margin: 00px;
+    padding: 0px;
+    gap: 80px;
+}
+
+.link {
+    text-decoration: none;
+    color: #FFA823;
+    font-size: 17px;
+    font-weight: bolder;
+}
+
+.link:hover{
+    color: #FFD35A;
+}
+
+/*Main*/
+.grid
+
+
+/*Footer*/
+footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    background-color: #624E88;
+    padding: 10px 25px;
+    height: 100px;
+    margin-bottom: 0em;
+}
+
+.info{
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: #FFA823;
+    font-size: 12px;
+    font-weight: bolder;
+}
+.logo #ig-footer {
+    align-content: center;
+    height: 65px;
+}
+
+.logo #logo-footer{
+    align-content: center;
+    height: 65px;
+}
+
+.info-final{
+    display: flex;
+    justify-content: end;
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: #FFA823;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+
+footer .final-column{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+footer .final-column .logo{
+    display: flex;
+    justify-content: center;
+    align-content: end;
+    height: 30px;
+}
