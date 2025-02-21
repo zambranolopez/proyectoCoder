@@ -1,3 +1,7 @@
+body{
+    background-color: beige;
+}
+
 .header, .footer {
     background-color: #624E88;
     border: 2px solid black;
@@ -31,4 +35,59 @@
 footer div .direccion-footer{
     list-style: none;
     padding: 0px;
+}
+
+main .local-interno{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+    padding: 0%;
+    margin-bottom: 5px;
+}
+
+
+main .local-interno #local-interno{
+    height: 400px;
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid #85688F;
+    border-radius: 10px ;
+}
+
+main .local-interno #texto-superpuesto{
+    position: absolute;
+    top: 30%;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px 50px;
+    border-radius: 10px;
+}
+
+main .principal .img-1{
+    display: flex;
+    gap: 5px;
+}
+
+main .principal .img-1 #img-1{
+    height: 250px;
+    width: 80%;
+    border: 2px solid #85688F;
+    border-radius: 10px ;
+}
+
+main .principal .img-1 p{
+    margin-bottom: 5%;
+    align-content: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #E8D9EE;
+    border: 2px solid #85688F;
+    border-radius: 10px ;
+    font-size: 40px;
+    color: gray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
